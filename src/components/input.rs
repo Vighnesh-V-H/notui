@@ -17,6 +17,10 @@ impl InputBox {
         }
     }
 
+    pub fn handle_paste(&mut self, data: String) {
+        self.input.push_str(&data);
+    }
+
     pub fn handle_key(&mut self, key: crossterm::event::KeyEvent) {
         match key.code {
             KeyCode::Char(c) => self.enter_char(c),

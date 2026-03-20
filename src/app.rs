@@ -28,20 +28,20 @@ impl App {
 
     pub fn handle_event(&mut self, key: KeyEvent) -> bool {
         match self.mode {
-            Mode::Setup => {
-                match key.code {
-                    KeyCode::Enter => {
-                        let value = self.input.value().to_string();
+            Mode::Setup => match key.code {
+                KeyCode::Enter => {
+                    let value = self.input.value().to_string();
 
-                        if !value.is_empty() {
-                            self.api_key = Some(value);
-                            self.mode = Mode::Running;
-                        }
+                    if !value.is_empty() {
+                        self.api_key = Some(value);
+                        self.mode = Mode::Running;
                     }
-                    KeyCode::Esc => return true, // exit app
-                    _ => self.input.handle_key(key),
                 }
-            }
+
+                KeyCode::Esc => return true,
+
+                _ => self.input.handle_key(key),
+            },
 
             Mode::Running => match key.code {
                 KeyCode::Char('q') => return true,
@@ -50,6 +50,10 @@ impl App {
         }
 
         false
+    }
+
+    pub fn handle_paste(&mut self, data: String) {
+        self.input.handle_paste(data);
     }
 
     pub fn render(&self, f: &mut Frame) {
