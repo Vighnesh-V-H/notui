@@ -2,7 +2,9 @@ mod app;
 mod components {
     pub mod input;
 }
-mod libs;
+mod libs {
+    pub mod credential_manager;
+}
 
 use std::io;
 

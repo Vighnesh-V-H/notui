@@ -5,6 +5,7 @@ edition = "2024"
 
 [dependencies]
 crossterm = "0.29.0"
+keyring = {version="3.6.3" ,   default-features = false, features = ["windows-native"]}
 ratatui = "0.30.0"
 ratatui-core = "0.1.0"
 ratatui-crossterm = "0.1.0"
